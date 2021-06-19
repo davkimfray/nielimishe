@@ -87,7 +87,7 @@ export default function LoginScreen({navigation}) {
                 </View>
                 <Text style={{flex: 1}}/>{/*Just for vertical align center*/}
                 <TouchableOpacity
-                    style={sharedStyles.buttonLogin}
+                    style={styles.button}
                     onPress={() => onLoginPress()}>
                     <Text style={styles.buttonLoginTitle}>Log in</Text>
                 </TouchableOpacity>

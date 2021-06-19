@@ -32,7 +32,7 @@ export default function HelpScreen({navigation}) {
                             name='angle-left'
                             color='black'
                             size={36}
-                            style={{paddingLeft: 30, paddingRight: 20}}
+                            style={{paddingLeft: 10, paddingRight: 20}}
                         />
                     </TouchableOpacity>
 

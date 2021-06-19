@@ -15,23 +15,6 @@ export default function HomeScreen(props) {
     useEffect(() => {
         setUserID(props.extraData.id)
         setChild(props.extraData.children)
-        entityRef
-            .where("authorID", "==", userID)
-            .orderBy('createdAt', 'desc')
-            .onSnapshot(
-                querySnapshot => {
-                    const newEntities = []
-                    querySnapshot.forEach(doc => {
-                        const entity = doc.data()
-                        entity.id = doc.id
-                        newEntities.push(entity)
-                    });
-                    setEntities(newEntities)
-                },
-                error => {
-                    console.log(error)
-                }
-            )
     }, [])
 
     const onAddButtonPress = () => {
@@ -84,17 +67,17 @@ export default function HomeScreen(props) {
             {/*</View>*/}
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => {props.navigation.navigate(child ? 'Courses' : 'ChildLevel')}}>
+                onPress={() => {props.navigation.navigate(props.extraData.role === 'admin' ? 'ChildLevel' : child ? 'Courses' : 'ChildLevel', {goTo: 'Courses'})}}>
                 <Text style={styles.buttonTitle}>Courses</Text>
             </TouchableOpacity>
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => {props.navigation.navigate(child ? 'EBooks' : 'ChildLevel')}}>
+                onPress={() => {props.navigation.navigate(props.extraData.role === 'admin' ? 'ChildLevel' : child ? 'EBooks' : 'ChildLevel', {goTo: 'EBooks'})}}>
                 <Text style={styles.buttonTitle}>E-Book</Text>
             </TouchableOpacity>
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => {props.navigation.navigate(child ? 'ParentGuide' : 'ChildLevel')}}>
+                onPress={() => {props.navigation.navigate(props.extraData.role === 'admin' ? 'ChildLevel' : child ? 'ParentGuide' : 'ChildLevel', {goTo: 'ParentGuide'})}}>
                 <Text style={styles.buttonTitle}>Parenting Guide</Text>
             </TouchableOpacity>
     </View>
