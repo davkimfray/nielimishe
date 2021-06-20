@@ -4,7 +4,7 @@ import { FlatList, Keyboard, Text, TextInput, TouchableOpacity, View } from 'rea
 import styles from './styles';
 import { firebase } from '../../firebase/config'
 import sharedStyles from "../sharedStyles";
-import Icon from "react-native-vector-icons/Feather";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 export default function CoursesScreen(props) {
     const [courses, setCourses] = useState([]);
@@ -51,16 +51,26 @@ const contentLevel = props.extraData.role === 'admin' ? props.route.params.level
 
     return (
         <View style={sharedStyles.container}>
-            <TouchableOpacity
-                style={{marginLeft: 0, marginRight: 'auto',marginTop: 40}}
-                onPress={() => props.navigation.goBack()}>
+                          <View style={sharedStyles.screenTitleWrapper}>
+                    <TouchableOpacity style={{flex: 1}} 
+                        onPress={() => props.navigation.goBack()}>
+                        <Icon
+                            name='angle-left'
+                            color='black'
+                            size={36}
+                        />
+                    </TouchableOpacity>
+
+<TouchableOpacity
+                            style={{paddingRight: 0, borderRadius: 50, backgroundColor: 'white', elevation: 3}}
+                onPress={() => {props.navigation.navigate('ProfileScreen')}}>
                 <Icon
-                    name='chevron-left'
-                    color='black'
-                    size={36}
-                    style={{paddingLeft: 8, paddingRight: 20}}
-                />
-              </TouchableOpacity>
+                            name='user-circle'
+                            color='#8962F8'
+                            size={36}
+                        />
+                    </TouchableOpacity>
+                </View>
         <View style={styles.container}>
             {courses.map((course, index) => (
                 <TouchableOpacity

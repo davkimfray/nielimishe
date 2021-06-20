@@ -12,8 +12,11 @@ export default StyleSheet.create({
     screenTitleWrapper: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-evenly',
-        marginTop: 40,
+        justifyContent: 'space-between',
+        paddingTop: 40,
+        padding: 16,
+        width: '100%',
+
     },
     screenTitle: {
         backgroundColor: '#8962F8',

@@ -1,108 +1,3 @@
-
-// import React, { useEffect, useState } from 'react'
-// import { Text, TouchableOpacity, View, SafeAreaView } from 'react-native'
-// import styles from './styles';
-// import { firebase } from '../../firebase/config'
-// import sharedStyles from "../sharedStyles";
-// import Icon from "react-native-vector-icons/Feather";
-// import { Video, AVPlaybackStatus } from 'expo-av';
-// import YoutubePlayerComponent from '../../components/YoutubePlayerComponent';
-// import YoutubePlayer from "react-native-youtube-iframe";
-
-// export default function CourseContentScreen(props) {
-//     const [courses, setCourses] = useState([]);
-//     const colors = ['#FD820B','#DF1125']
-//     const video = React.useRef(null);
-//     const courseSeries = [
-//         "DC471a9qrU4",
-//         "tVCYa_bnITg",
-//         "K74l26pE4YA",
-//         "m3OjWNFREJo",
-//       ];
-
-//     useEffect(() => {
-//         const courseRef = firebase.firestore().collection('courses')
-//         courseRef
-//             .doc("Low")
-//             // .withConverter()
-//             // .orderBy('createdAt', 'desc')
-//             .onSnapshot(
-//                 querySnapshot => {
-//                     setCourses(querySnapshot.data().Counting)
-//                 },
-//                 error => {
-//                     console.log(error)
-//                 }
-//             )
-//     }, [])
-
-
-
-//     return (
-//         <View style={sharedStyles.container}>
-//             <TouchableOpacity
-//                 style={{marginLeft: 0, marginRight: 'auto',marginTop: 50}}
-//                 onPress={() => props.navigation.goBack()}>
-//                 <Icon
-//                     name='chevron-left'
-//                     color='black'
-//                     size={36}
-//                     style={{paddingLeft: 30, paddingRight: 20}}
-//                 />
-//             </TouchableOpacity>
-//        {/* <iframe width="560" height="315" src="https://www.youtube.com/embed/bz_v83R9w-0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
-//  <View style={styles.container}>
-//                            {/* <YoutubePlayerComponent style={{width: 320}}/>  */}
-//                            <SafeAreaView style={{ flex: 1 }}>
-//       <YoutubePlayer height={250} videoId={"sNhhvQGsMEc"} />
-//     </SafeAreaView>
-//  {courses.map((course, index) => (
- 
-//                  <View key={index} style={{backgroundColor: 'blue', padding: 40}}>        
-//                         {/* <Video
-//                 //   ref={video}
-//                   style={{width: 320, height: 300}}
-//                   source={{
-//                     uri: 'https://www.youtube.com/embed/bz_v83R9w-0', 
-//                     // uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
-//                   }}
-//                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-//                   useNativeControls
-//                   resizeMode="contain"
-//                   isLooping
-//                 //   onPlaybackStatusUpdate={status => setStatus(() => status)}
-//                 /> */}
-//                 </View>
-//                 // <TouchableOpacity
-//                 //     key={index}
-//                 //     style={[styles.button, {backgroundColor: colors[index]}]}
-
-//                 //     onPress={() => props.navigation.navigate('ChildLevel')}>
-//                 //     <Text style={styles.buttonTitle}>{course}</Text>
-//                 // </TouchableOpacity>
-//             ))}
-//         </View>
-//         {/*<View style={styles.container}>*/}
-//                 <TouchableOpacity
-//                     style={styles.addButton}
-//                     onPress={() => props.navigation.navigate('AddCourseScreen')}
-//                     >
-//                     <Icon
-//                         name='plus'
-//                         color='red'
-//                         size={30}
-//                         // style={{padding: 20}}
-//                     />
-//                 </TouchableOpacity>
-//         {/*</View>*/}
-
-//     </View>
-// )
-// }
-
-
-
-
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import {
   SafeAreaView,
@@ -116,7 +11,7 @@ import {
 import YoutubeIframe, { getYoutubeMeta } from "react-native-youtube-iframe";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { firebase } from '../../firebase/config'
-import Icon from "react-native-vector-icons/Feather";
+import Icon from "react-native-vector-icons/FontAwesome";
 import sharedStyles from "../sharedStyles";
 
 // const courseSeries = [
@@ -152,22 +47,29 @@ export default function CourseContentScreen(props) {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-                 <View style={{flexDirection: 'row', alignItems: 'center',marginTop: 40}}>
-           <TouchableOpacity
-                style={{marginLeft: 0, marginRight: 'auto'}}
-                onPress={() => props.navigation.goBack()}>
-                <Icon
-                    name='chevron-left'
-                    color='black'
-                    size={36}
-                    style={{paddingLeft: 8, paddingRight: 20}}
-                />
-            </TouchableOpacity>
-            <Text style={{ fontSize: 18, fontWeight: "bold", flex: 1}}>
+
+<View style={sharedStyles.screenTitleWrapper}>
+                    <TouchableOpacity 
+                        onPress={() => props.navigation.goBack()}>
+                        <Icon
+                            name='angle-left'
+                            color='black'
+                            size={36}
+                        />
+                    </TouchableOpacity>
+  <Text style={{ fontSize: 18, fontWeight: "bold", paddingLeft: 24}}>
               {props.route.params.courseName}
             </Text>
-            {/* <ProgressBar progress={progress * 100} /> */}
-          </View>
+<TouchableOpacity
+                            style={{paddingRight: 0, borderRadius: 50, backgroundColor: 'white', elevation: 3}}
+                onPress={() => {props.navigation.navigate('ProfileScreen')}}>
+                <Icon
+                            name='user-circle'
+                            color='#8962F8'
+                            size={36}
+                        />
+                    </TouchableOpacity>
+                </View>
            <FlatList
         contentContainerStyle={{ marginVertical: 16 }}
 
