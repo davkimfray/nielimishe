@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { LoginScreen, HomeScreen, RegistrationScreen, HelpScreen, ChildLevelScreen,
     ChildBirthdayScreen, ChildNameScreen, CoursesScreen, EBooksScreen, ParentGuideScreen,
-    AddCourseScreen} from './src/screens'
+    AddCourseScreen, CourseContentScreen, ProfileScreen} from './src/screens'
 import { firebase } from './src/firebase/config'
 import {decode, encode} from 'base-64'
 import {View, Text} from "react-native";
@@ -76,7 +76,7 @@ export default function App() {
                     <Stack.Screen name="Courses" options={{headerShown: false}}>
                         {props => <CoursesScreen {...props} extraData={user} />}
                     </Stack.Screen>
-                    <Stack.Screen name="CoursesContent" options={{headerShown: false}}>
+                    <Stack.Screen name="CourseContentScreen" options={{headerShown: false}}>
                         {props => <CourseContentScreen {...props} extraData={user} />}
                     </Stack.Screen>
                     <Stack.Screen name="AddCourseScreen" options={{headerShown: false}}>
@@ -87,6 +87,9 @@ export default function App() {
                     </Stack.Screen>
                     <Stack.Screen name="ParentGuide" options={{headerShown: false}}>
                         {props => <ParentGuideScreen {...props} extraData={user} />}
+                    </Stack.Screen>
+                    <Stack.Screen name="ProfileScreen" options={{headerShown: false}}>
+                        {props => <ProfileScreen {...props} extraData={user} />}
                     </Stack.Screen>
                     </>
                 ) : (

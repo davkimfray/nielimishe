@@ -4,9 +4,9 @@
     "slug": "Nielimishe",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/Clownface.png",
+    "icon": "./assets/nielimishe-logo.png",
     "splash": {
-      "image": "./assets/nielimishe-Splash.png",
+      "image": "./assets/nielimishe-logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -21,7 +21,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/Clownface.png",
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },

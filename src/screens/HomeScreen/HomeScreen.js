@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { FlatList, Keyboard, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import styles from './styles';
 import { firebase } from '../../firebase/config'
+import Icon from "react-native-vector-icons/FontAwesome";
+import sharedStyles from "../sharedStyles";
 
 export default function HomeScreen(props) {
     const [entityText, setEntityText] = useState('')
@@ -15,23 +17,6 @@ export default function HomeScreen(props) {
     useEffect(() => {
         setUserID(props.extraData.id)
         setChild(props.extraData.children)
-        entityRef
-            .where("authorID", "==", userID)
-            .orderBy('createdAt', 'desc')
-            .onSnapshot(
-                querySnapshot => {
-                    const newEntities = []
-                    querySnapshot.forEach(doc => {
-                        const entity = doc.data()
-                        entity.id = doc.id
-                        newEntities.push(entity)
-                    });
-                    setEntities(newEntities)
-                },
-                error => {
-                    console.log(error)
-                }
-            )
     }, [])
 
     const onAddButtonPress = () => {
@@ -67,7 +52,21 @@ export default function HomeScreen(props) {
 
     return (
 
-        <View style={styles.container}>
+        <View style={sharedStyles.container}>
+                    <View style={sharedStyles.screenTitleWrapper}>
+                    <Text style={{flex: 1}} />
+
+<TouchableOpacity
+                            style={{paddingRight: 0, borderRadius: 50, backgroundColor: 'white', elevation: 3}}
+                onPress={() => {props.navigation.navigate('ProfileScreen')}}>
+                <Icon
+                            name='user-circle'
+                            color='#8962F8'
+                            size={36}
+                        />
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.container}>
             {/*<View>*/}
             {/*    <TextInput*/}
             {/*        style={styles.input}*/}
@@ -82,21 +81,23 @@ export default function HomeScreen(props) {
             {/*        <Text style={styles.buttonText}>Add</Text>*/}
             {/*    </TouchableOpacity>*/}
             {/*</View>*/}
+
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => {props.navigation.navigate(child ? 'Courses' : 'ChildLevel')}}>
+                onPress={() => {props.navigation.navigate(props.extraData.role === 'admin' ? 'ChildLevel' : child ? 'Courses' : 'ChildLevel', {goTo: 'Courses'})}}>
                 <Text style={styles.buttonTitle}>Courses</Text>
             </TouchableOpacity>
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => {props.navigation.navigate(child ? 'EBooks' : 'ChildLevel')}}>
+                onPress={() => {props.navigation.navigate(props.extraData.role === 'admin' ? 'ChildLevel' : child ? 'EBooks' : 'ChildLevel', {goTo: 'EBooks'})}}>
                 <Text style={styles.buttonTitle}>E-Book</Text>
             </TouchableOpacity>
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => {props.navigation.navigate(child ? 'ParentGuide' : 'ChildLevel')}}>
+                onPress={() => {props.navigation.navigate(props.extraData.role === 'admin' ? 'ChildLevel' : child ? 'ParentGuide' : 'ChildLevel', {goTo: 'ParentGuide'})}}>
                 <Text style={styles.buttonTitle}>Parenting Guide</Text>
             </TouchableOpacity>
+    </View>
     </View>
 )
 }

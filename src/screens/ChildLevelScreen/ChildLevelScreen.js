@@ -22,7 +22,7 @@ export default function ChildLevelScreen(props) {
     return (
         <View style={sharedStyles.container}>
             <TouchableOpacity
-                style={{marginLeft: 0, marginRight: 'auto',marginTop: 50}}
+                style={{marginLeft: 0, marginRight: 'auto',marginTop: 30}}
                 onPress={() => props.navigation.goBack()}>
                 <Icon
                     name='angle-left'
@@ -36,7 +36,7 @@ export default function ChildLevelScreen(props) {
                 </View>
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={() => {props.navigation.navigate('ChildBirthday', {level: 'Low'})}}>
+                    onPress={() => {props.navigation.navigate(props.extraData.role === 'admin' ? props.route.params.goTo : 'ChildBirthday', {level: 'Low'})}}>
                     <View style={styles.indicatorWrapper}>
                         <Text style={styles.indicatorLow}/>
                     </View>
@@ -47,7 +47,7 @@ export default function ChildLevelScreen(props) {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={() => props.navigation.navigate('ChildBirthday', {level:'Medium'})}>
+                    onPress={() => props.navigation.navigate(props.extraData.role === 'admin' ? props.route.params.goTo : 'ChildBirthday', {level:'Medium'})}>
                     <View style={styles.indicatorWrapper}>
                         <Text style={styles.indicatorMedium}/>
                     </View>
@@ -58,7 +58,7 @@ export default function ChildLevelScreen(props) {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={() => props.navigation.navigate('ChildBirthday', {child: {level: 'High'}})}>
+                    onPress={() => props.navigation.navigate(props.extraData.role === 'admin' ? props.route.params.goTo : 'ChildBirthday', {child: {level: 'High'}})}>
                     <View style={styles.indicatorWrapper}>
                         <Text style={styles.indicatorHigh}/>
                     </View>
