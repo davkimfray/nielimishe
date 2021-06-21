@@ -26,6 +26,7 @@ export default function RegistrationScreen({navigation}) {
                     id: uid,
                     email,
                     fullName: email,
+                    role: 'user'
                 };
                 const usersRef = firebase.firestore().collection('users')
                 usersRef
@@ -111,7 +112,7 @@ export default function RegistrationScreen({navigation}) {
                 <TouchableOpacity
                     style={styles.buttonRegister}
                     onPress={() => onRegisterPress()}>
-                    <Text style={styles.buttonRegisterTitle}>Register</Text>
+                    <Text style={sharedStyles.buttonRegisterTitle}>Register</Text>
                 </TouchableOpacity>
 
             </KeyboardAwareScrollView>

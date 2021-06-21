@@ -14,8 +14,7 @@ export default function HomeScreen(props) {
 
     useEffect(() => {
         setUserID(props.extraData.id)
-        setChild(props.extraData.child)
-        console.log(userID);
+        setChild(props.extraData.children)
         entityRef
             .where("authorID", "==", userID)
             .orderBy('createdAt', 'desc')
@@ -69,20 +68,20 @@ export default function HomeScreen(props) {
     return (
 
         <View style={styles.container}>
-            <View>
-                <TextInput
-                    style={styles.input}
-                    placeholder='Add new entity'
-                    placeholderTextColor="#aaaaaa"
-                    onChangeText={(text) => setEntityText(text)}
-                    value={entityText}
-                    underlineColorAndroid="transparent"
-                    autoCapitalize="none"
-                />
-                <TouchableOpacity style={styles.button} onPress={onAddButtonPress}>
-                    <Text style={styles.buttonText}>Add</Text>
-                </TouchableOpacity>
-            </View>
+            {/*<View>*/}
+            {/*    <TextInput*/}
+            {/*        style={styles.input}*/}
+            {/*        placeholder='Add new entity'*/}
+            {/*        placeholderTextColor="#aaaaaa"*/}
+            {/*        onChangeText={(text) => setEntityText(text)}*/}
+            {/*        value={entityText}*/}
+            {/*        underlineColorAndroid="transparent"*/}
+            {/*        autoCapitalize="none"*/}
+            {/*    />*/}
+            {/*    <TouchableOpacity style={styles.button} onPress={onAddButtonPress}>*/}
+            {/*        <Text style={styles.buttonText}>Add</Text>*/}
+            {/*    </TouchableOpacity>*/}
+            {/*</View>*/}
             <TouchableOpacity
                 style={styles.button}
                 onPress={() => {props.navigation.navigate(child ? 'Courses' : 'ChildLevel')}}>

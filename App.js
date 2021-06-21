@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { LoginScreen, HomeScreen, RegistrationScreen, HelpScreen, ChildLevelScreen,
-    ChildBirthdayScreen, ChildNameScreen, CoursesScreen, EBooksScreen, ParentGuideScreen } from './src/screens'
+    ChildBirthdayScreen, ChildNameScreen, CoursesScreen, EBooksScreen, ParentGuideScreen,
+    AddCourseScreen} from './src/screens'
 import { firebase } from './src/firebase/config'
 import {decode, encode} from 'base-64'
 import {View, Text} from "react-native";
@@ -74,6 +75,12 @@ export default function App() {
                     </Stack.Screen>
                     <Stack.Screen name="Courses" options={{headerShown: false}}>
                         {props => <CoursesScreen {...props} extraData={user} />}
+                    </Stack.Screen>
+                    <Stack.Screen name="CoursesContent" options={{headerShown: false}}>
+                        {props => <CourseContentScreen {...props} extraData={user} />}
+                    </Stack.Screen>
+                    <Stack.Screen name="AddCourseScreen" options={{headerShown: false}}>
+                        {props => <AddCourseScreen {...props} extraData={user} />}
                     </Stack.Screen>
                     <Stack.Screen name="EBooks" options={{headerShown: false}}>
                         {props => <EBooksScreen {...props} extraData={user} />}

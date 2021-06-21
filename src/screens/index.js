@@ -6,5 +6,7 @@ export { default as ChildLevelScreen } from './ChildLevelScreen/ChildLevelScreen
 export { default as ChildBirthdayScreen } from './ChildBirthdayScreen/ChildBirthdayScreen'
 export { default as ChildNameScreen } from './ChildNameScreen/ChildNameScreen'
 export { default as CoursesScreen } from './CoursesScreen/CoursesScreen'
+export { default as CourseContentScreen } from './CourseContentScreen/CourseContentScreen'
+export { default as AddCourseScreen } from './AddCourseScreen/AddCourseScreen'
 export { default as EBooksScreen } from './EBooksScreen/EBooksScreen'
 export { default as ParentGuideScreen } from './ParentGuideScreen/ParentGuideScreen'

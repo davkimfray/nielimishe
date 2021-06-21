@@ -1,15 +1,14 @@
 
 import React, { useEffect, useState } from 'react'
-import { FlatList, Keyboard, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Text, TouchableOpacity, View } from 'react-native'
 import styles from './styles';
 import { firebase } from '../../firebase/config'
 import sharedStyles from "../sharedStyles";
 import Icon from "react-native-vector-icons/Feather";
 
-export default function CoursesScreen(props) {
+export default function CourseContentScreen(props) {
     const [courses, setCourses] = useState([]);
     const colors = ['#FD820B','#DF1125']
-let buttonStyle = [];
 
 
     useEffect(() => {
@@ -54,7 +53,7 @@ let buttonStyle = [];
                     key={index}
                     style={[styles.button, {backgroundColor: colors[index]}]}
 
-                    onPress={() => props.navigation.navigate('CoursesContent')}>
+                    onPress={() => props.navigation.navigate('ChildLevel')}>
                     <Text style={styles.buttonTitle}>{course}</Text>
                 </TouchableOpacity>
             ))}

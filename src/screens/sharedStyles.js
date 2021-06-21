@@ -4,6 +4,7 @@ export default StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
+        width: '100%'
     },
     title: {
 
@@ -20,7 +21,6 @@ export default StyleSheet.create({
         width: '50%',
         padding: 16,
         paddingLeft: 32,
-        marginBottom: 30,
         marginLeft: 'auto',
         fontSize: 18,
         fontWeight: 'bold',
@@ -48,10 +48,39 @@ export default StyleSheet.create({
         height: 48,
         overflow: 'hidden',
         backgroundColor: 'white',
+        marginTop: 4,
+        marginBottom: 20,
+        marginLeft: '10%',
+        marginRight: '10%',
+        paddingRight: 16,
+        paddingLeft: 16,
+        borderWidth: 1,
+        borderColor: "#BEBEBE",
+        borderRadius: 16,
+        width: '80%'
+    },
+    selectInput: {
+        backgroundColor: 'white',
+        height: 48,
+        marginTop: 4,
+        marginLeft: '10%',
+        marginRight: '10%',
+        paddingRight: 24,
+        paddingLeft: 24,
+        borderWidth: 1,
+        borderColor: "#aaaaaa",
+        borderRadius: 16,
+        width: '80%',
+        alignItems: 'center'
+    },
+    textArea: {
+        // minHeight: 96,
+        overflow: 'hidden',
+        backgroundColor: 'white',
         marginTop: 10,
         marginBottom: 10,
-        marginLeft: 40,
-        marginRight: 40,
+        marginLeft: '10%',
+        marginRight: '10%',
         paddingRight: 16,
         paddingLeft: 16,
         borderWidth: 1,
@@ -59,18 +88,23 @@ export default StyleSheet.create({
         borderRadius: 20,
     },
     button: {
-        backgroundColor: '#788eec',
-        marginLeft: 30,
-        marginRight: 30,
+        marginLeft: '10%',
+        marginRight: '10%',
         marginTop: 20,
-        height: 48,
-        borderRadius: 5,
+        height: 64,
         alignItems: "center",
-        justifyContent: 'center'
+        justifyContent: 'center',
+
+
+        backgroundColor: '#8962F8',
+        elevation: 3,
+        width: '80%',
+        borderRadius: 16,
+        padding: 20,
     },
     buttonTitle: {
         color: 'white',
         fontSize: 16,
         fontWeight: 'bold'
-    }
+    },
 })

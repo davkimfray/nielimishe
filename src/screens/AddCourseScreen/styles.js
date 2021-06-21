@@ -9,19 +9,21 @@ export default StyleSheet.create({
         padding: 20,
     },
     button: {
-        backgroundColor: 'white',
+        backgroundColor: '#8962F8',
         elevation: 3,
-        height: 48,
+        height: 72,
+        width: '80%',
         borderRadius: 20,
         alignItems: "center",
         justifyContent: 'center',
         padding: 20,
+        margin: 'auto'
 
     },
     buttonTitle: {
-        color: '#BEBEBE',
+        color: '#fff',
         fontSize: 16,
-        // fontWeight: 'bold'
+        fontWeight: 'bold'
     },
     buttonRegister: {
         backgroundColor: '#DF1125',
