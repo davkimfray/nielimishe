@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/nielimishe-logo.png",
     "splash": {
-      "image": "./assets/nielimishe-logo.png",
+      "image": "./assets/nielimishe-Splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -21,12 +21,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/nielimishe-logo-Splash.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/nielimishe-logo.png"
     }
   }
 }

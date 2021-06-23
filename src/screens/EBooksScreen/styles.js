@@ -22,4 +22,10 @@ export default StyleSheet.create({
         borderRadius: 20,
 
     },
+    fab: {
+        position: 'absolute',
+        margin: 16,
+        right: 0,
+        bottom: 0
+    }
 })
