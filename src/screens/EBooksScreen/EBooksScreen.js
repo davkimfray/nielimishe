@@ -1,11 +1,12 @@
 
 import React, { useEffect, useState } from 'react'
-import {Text, Image, ImageBackground, TouchableOpacity, View } from 'react-native'
+import {Text, Image, ImageBackground, TouchableOpacity, View, Button} from 'react-native'
 import styles from './styles';
 import { firebase } from '../../firebase/config'
 import sharedStyles from "../sharedStyles";
 import Icon from "react-native-vector-icons/FontAwesome";
 import math from "../../../assets/ebooks/see_inside_maths.jpg"
+import { FAB } from "react-native-paper";
 
 export default function EBooksScreen(props) {
     const books = [
@@ -43,6 +44,7 @@ export default function EBooksScreen(props) {
 
             ))}
         </View>
+            <FAB medium icon='plus' style={styles.fab} onPress={() => props.navigation.navigate('AddEbookScreen')} />
     </View>
 )
 }
