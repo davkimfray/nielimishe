@@ -25,6 +25,7 @@ export default StyleSheet.create({
         padding: 16,
         paddingLeft: 32,
         marginLeft: 'auto',
+        marginRight: -16,
         fontSize: 18,
         fontWeight: 'bold',
         borderTopLeftRadius: 20,
@@ -32,20 +33,20 @@ export default StyleSheet.create({
 
     },
     logo: {
-        // flex: 1,
         height: 120,
         width: 120,
         alignSelf: "center",
-        margin: 30
+        margin: 16
     },
     logoText: {
-        // flex: 1,
-        height: 48,
         alignSelf: "center",
-        marginBottom: 24,
+        marginBottom: 48,
         fontSize: 24,
         color:  '#788eec',
         fontWeight: 'bold'
+    },
+    disabledButton: {
+        backgroundColor: '#DDDDDD',
     },
     input: {
         height: 48,
@@ -97,8 +98,6 @@ export default StyleSheet.create({
         height: 64,
         alignItems: "center",
         justifyContent: 'center',
-
-
         backgroundColor: '#8962F8',
         elevation: 3,
         width: '80%',
@@ -110,4 +109,19 @@ export default StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold'
     },
+    footerView: {
+        flex: 1,
+        alignItems: "center",
+        marginTop: 20,
+        marginBottom: 40,
+    },
+    footerText: {
+        fontSize: 16,
+        color: '#2e2e2d'
+    },
+    footerLink: {
+        color: "#8962F8",
+        fontWeight: "bold",
+        fontSize: 16
+    }
 })

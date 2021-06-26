@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react'
-import { FlatList, Keyboard, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { FlatList, ActivityIndicator, Keyboard, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import styles from './styles';
 import { firebase } from '../../firebase/config'
 import sharedStyles from "../sharedStyles";
@@ -9,44 +9,36 @@ import Icon from "react-native-vector-icons/FontAwesome";
 export default function CoursesScreen(props) {
     const [courses, setCourses] = useState([]);
     const [coursesData, setCoursesData] = useState([]);
+    const [loading, setLoading] = useState(true)
+
     const colors = ['#FD820B','#DF1125']
 let buttonStyle = [];
     
-const contentLevel = props.extraData.role === 'admin' ? props.route.params.level : props.extraData.children[props.extraData.selectedChild].level 
-// console.log(props.extraData.children[props.extraData.selectedChild].level);
+let contentLevel
+    let userData;
     useEffect(() => {
-        const courseRef = firebase.firestore().collection('courses')
-        courseRef
-        
-            // .orderBy('createdAt', 'desc')
-            // .onSnapshot(
-            //     querySnapshot => {
-            //         let newEntities = []
-            //         querySnapshot.forEach(doc => {
-            //             const entity = Object.keys(doc.data())
-            //             // entity.id = doc.id
-            //             newEntities = Array.prototype.concat(entity)
-            //             console.log(doc.data())
-            //         });
-            //         newEntities = [...new Set(newEntities)]
-            //         console.log(querySnapshot)
-            //         setCourses(newEntities)
-            //     },
+        const childRef = firebase.firestore().collection('users').doc(props.extraData.id)
+        childRef
+        .onSnapshot(querySnapshot => {
+            userData = querySnapshot.data()
+            contentLevel = props.extraData.role === 'admin' ? props.route.params.level : userData.children[userData.selectedChild].level 
 
-                .doc(contentLevel)
-                // .withConverter()
-                // .orderBy('createdAt', 'desc')
-                .onSnapshot(
-                    querySnapshot => {
-                        setCourses(Object.keys(querySnapshot.data()))
-                        setCoursesData(querySnapshot.data())
-                    },
-                error => {
-                    console.log(error)
-                }
-            )
+            const courseRef = firebase.firestore().collection('courses')
+            courseRef
+                    .doc(contentLevel)
+                    .onSnapshot(
+                        querySnapshot => {
+                            setCourses(Object.keys(querySnapshot.data()))
+                            setCoursesData(querySnapshot.data())
+                            setLoading(false)
+                        },
+                    error => {
+                        console.log(error)
+                        setLoading(false)
+                    }
+                )
+        })
     }, [])
-
 
 
     return (
@@ -71,6 +63,11 @@ const contentLevel = props.extraData.role === 'admin' ? props.route.params.level
                         />
                     </TouchableOpacity>
                 </View>
+        {loading ? 
+           <View style={{flex:1, alignItems: 'center',justifyContent: 'center'}}>
+           <ActivityIndicator size={80} color={'#8962F8'}/>
+       </View>
+        :
         <View style={styles.container}>
             {courses.map((course, index) => (
                 <TouchableOpacity
@@ -82,6 +79,7 @@ const contentLevel = props.extraData.role === 'admin' ? props.route.params.level
                 </TouchableOpacity>
             ))}
         </View>
+}
         {/*<View style={styles.container}>*/}
        { props.extraData.role === 'admin' ?
                 <TouchableOpacity

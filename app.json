@@ -4,9 +4,9 @@
     "slug": "Nielimishe",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/nielimishe-logo.png",
+    "icon": "./assets/nielimishe-splash.png",
     "splash": {
-      "image": "./assets/nielimishe-logo.png",
+      "image": "./assets/nielimishe-splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "",
+    "githubUrl": "https://github.com/davkimfray/nielimishe"
   }
 }

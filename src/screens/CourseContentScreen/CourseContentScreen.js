@@ -7,19 +7,13 @@ import {
   View,
   TouchableOpacity,
   Modal,
+  ActivityIndicator
 } from "react-native";
 import YoutubeIframe, { getYoutubeMeta } from "react-native-youtube-iframe";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { firebase } from '../../firebase/config'
 import Icon from "react-native-vector-icons/FontAwesome";
 import sharedStyles from "../sharedStyles";
-
-// const courseSeries = [
-//     "DC471a9qrU4",
-//     "tVCYa_bnITg", 
-//     "K74l26pE4YA",
-//     "m3OjWNFREJo",
-//   ];
 
 export default function CourseContentScreen(props) {
   const [modalVisible, showModal] = useState(false);
@@ -28,7 +22,6 @@ export default function CourseContentScreen(props) {
 
 
   const courseSeries = props.route.params.courseData;
-  console.log(courseSeries);
 
   const onVideoPress = useCallback((videoId) => {
     showModal(true);
@@ -70,7 +63,8 @@ export default function CourseContentScreen(props) {
                         />
                     </TouchableOpacity>
                 </View>
-           <FlatList
+ 
+         <FlatList
         contentContainerStyle={{ marginVertical: 16 }}
 
            ListHeaderComponent={""}
@@ -80,6 +74,7 @@ export default function CourseContentScreen(props) {
         )}
         keyExtractor={(item) => item}
       /> 
+        
       <Modal
           animationType="fade"
           transparent={true}
@@ -106,26 +101,12 @@ const getProgress = async () => {
   return completed / total;
 };
 
-// const ProgressBar = ({ progress }) => {
-//   const width = (progress || 0) + "%";
-//   return (
-//     <View style={{ borderWidth: 1, marginVertical: 16 }}>
-//       <View
-//         style={{
-//           backgroundColor: "green",
-//           height: 10,
-//           width,
-//         }}
-//       />
-//     </View>
-//   );
-// };
-
 const VideoItem = ({ videoId, onPress }) => {
   const [videoMeta, setVideoMeta] = useState(null);
   useEffect(() => {
     getYoutubeMeta(videoId).then((data) => {
       setVideoMeta(data);
+      setLoading(false)
     });
   }, [videoId]);
 
@@ -158,6 +139,7 @@ const VideoItem = ({ videoId, onPress }) => {
 const VideoModal = ({ videoId, onClose }) => {
   const playerRef = useRef(null);
   const [completed, setCompleted] = useState(false);
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -177,6 +159,7 @@ const VideoModal = ({ videoId, onClose }) => {
 
   const onPlayerReady = useCallback(() => {
     getVideoProgress(videoId).then((data) => {
+      setLoading(false)
       if (data.timeStamp) {
         playerRef.current?.seekTo(data.timeStamp);
       }
@@ -187,7 +170,7 @@ const VideoModal = ({ videoId, onClose }) => {
     <View
       style={{
         flex: 1,
-        backgroundColor: "#000000dd",
+        backgroundColor: "#ffffffdd",
         justifyContent: "center",
       }}
     >
@@ -195,6 +178,11 @@ const VideoModal = ({ videoId, onClose }) => {
         <Text onPress={onClose} style={{ textAlign: "right" }}>
           Close
         </Text>
+        {loading ? 
+           <View style={{marginTop: '30%', marginLeft: '35%', position: 'absolute'}}>
+           <ActivityIndicator size={60} color={'#8962F8'}/>
+       </View>
+        : <Text/> }
         <YoutubeIframe
           ref={playerRef}
           play={true}
@@ -207,6 +195,7 @@ const VideoModal = ({ videoId, onClose }) => {
             }
           }}
         />
+
       </View>
     </View>
   );
@@ -231,5 +220,3 @@ const getVideoProgress = async (videoId) => {
     timeStamp: 0,
   };
 };
-
-// export default CourseContentScreen;

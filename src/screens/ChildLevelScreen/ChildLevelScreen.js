@@ -36,7 +36,7 @@ export default function ChildLevelScreen(props) {
                 </View>
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={() => {props.navigation.navigate(props.extraData.role === 'admin' ? props.route.params.goTo : 'ChildBirthday', {level: 'Low'})}}>
+                    onPress={() => {props.navigation.navigate(props.extraData.role === 'admin' ? props.route.params.goTo : 'ChildBirthday', {children: props.route.params.children, level: 'Low'})}}>
                     <View style={styles.indicatorWrapper}>
                         <Text style={styles.indicatorLow}/>
                     </View>
@@ -47,7 +47,7 @@ export default function ChildLevelScreen(props) {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={() => props.navigation.navigate(props.extraData.role === 'admin' ? props.route.params.goTo : 'ChildBirthday', {level:'Medium'})}>
+                    onPress={() => props.navigation.navigate(props.extraData.role === 'admin' ? props.route.params.goTo : 'ChildBirthday', {children: props.route.params.children, level:'Medium'})}>
                     <View style={styles.indicatorWrapper}>
                         <Text style={styles.indicatorMedium}/>
                     </View>
@@ -58,7 +58,7 @@ export default function ChildLevelScreen(props) {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={() => props.navigation.navigate(props.extraData.role === 'admin' ? props.route.params.goTo : 'ChildBirthday', {child: {level: 'High'}})}>
+                    onPress={() => props.navigation.navigate(props.extraData.role === 'admin' ? props.route.params.goTo : 'ChildBirthday', {children: props.route.params.children, level: 'High'})}>
                     <View style={styles.indicatorWrapper}>
                         <Text style={styles.indicatorHigh}/>
                     </View>

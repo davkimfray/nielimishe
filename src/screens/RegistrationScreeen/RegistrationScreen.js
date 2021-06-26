@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Image, Text, ActivityIndicator, TextInput, TouchableOpacity, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from './styles';
 import sharedStyles from "../sharedStyles";
@@ -10,9 +10,11 @@ export default function RegistrationScreen({navigation}) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+    const [loading, setLoading] = useState(false)
 
 
     const onRegisterPress = () => {
+        setLoading(true);
         if (password !== confirmPassword) {
             alert("Passwords don't match.")
             return
@@ -33,15 +35,18 @@ export default function RegistrationScreen({navigation}) {
                     .doc(uid)
                     .set(data)
                     .then(() => {
-                        navigation.navigate('Home', {user: data})
+        setLoading(false);
+        navigation.navigate('Home', {user: data})
                     })
                     .catch((error) => {
                         alert(error)
-                    });
+        setLoading(false);
+    });
             })
             .catch((error) => {
                 alert(error)
-            });
+        setLoading(false);
+    });
     }
 
     return (
@@ -51,7 +56,7 @@ export default function RegistrationScreen({navigation}) {
                 style={{ flex: 1, width: '100%' }}
                 keyboardShouldPersistTaps="always">
                 <View style={sharedStyles.screenTitleWrapper}>
-                    <TouchableOpacity
+                    {/* <TouchableOpacity
                         onPress={() => navigation.goBack()}>
                         <Icon
                             name='angle-left'
@@ -59,9 +64,10 @@ export default function RegistrationScreen({navigation}) {
                             size={36}
                             style={{paddingLeft: 30, paddingRight: 20}}
                         />
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     <Text style={sharedStyles.screenTitle}>Register</Text>
                 </View>
+                <View style={{flex:1}}/>
                 <Image
                     style={sharedStyles.logo}
                     source={require('../../../assets/nielimishe-logo.png')}
@@ -96,24 +102,25 @@ export default function RegistrationScreen({navigation}) {
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
                 />
-                <View style={styles.buttonsWrapper}>
-                    <TouchableOpacity
-                        style={styles.button}
-                        onPress={() => navigation.navigate('Login')}>
-                        <Text style={styles.buttonTitle}>Already Registered?</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.button}
-                        onPress={() => navigation.navigate('Help')}>
-                        <Text style={styles.buttonTitle}>Need Help?</Text>
-                    </TouchableOpacity>
-                </View>
-                <Text style={{flex: 1}}/>{/*Just for vertical align center*/}
+     
                 <TouchableOpacity
-                    style={styles.buttonRegister}
+                    style={loading ? [styles.buttonRegister, sharedStyles.disabledButton] : styles.buttonRegister}
+                    disabled={loading}
                     onPress={() => onRegisterPress()}>
-                    <Text style={sharedStyles.buttonRegisterTitle}>Register</Text>
+                        {loading ? 
+                            <ActivityIndicator size={'large'} color={'#8962F8'} style={{paddingRight: 16}}/>
+                        :   <Text/>
+                        }
+                    <Text style={styles.buttonRegisterTitle}>Register</Text>
                 </TouchableOpacity>
+                <View style={{ flex: 1, alignItems: "center",marginTop:20}}>
+                    <Text style={sharedStyles.footerText}>Alredy have an account? <Text onPress={() => navigation.navigate('Login')
+} style={sharedStyles.footerLink}>Log in</Text></Text>
+                </View>
+
+                <View style={sharedStyles.footerView}>
+                    {/* <Text onPress={() => navigation.navigate('Help')} style={sharedStyles.footerLink}>Need Help?</Text> */}
+                </View>
 
             </KeyboardAwareScrollView>
         </View>

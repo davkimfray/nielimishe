@@ -7,7 +7,7 @@ import { LoginScreen, HomeScreen, RegistrationScreen, HelpScreen, ChildLevelScre
     AddCourseScreen, CourseContentScreen, ProfileScreen} from './src/screens'
 import { firebase } from './src/firebase/config'
 import {decode, encode} from 'base-64'
-import {View, Text} from "react-native";
+import {View, Text, ActivityIndicator} from "react-native";
 if (!global.btoa) {  global.btoa = encode }
 if (!global.atob) { global.atob = decode }
 
@@ -16,12 +16,13 @@ const Stack = createStackNavigator();
 export default function App() {
 
     const [loading, setLoading] = useState(true)
+    const [loggedIn, setLoggedIn] = useState(false)
     const [user, setUser] = useState(null)
 
 
     useEffect(() => {
         const usersRef = firebase.firestore().collection('users');
-        firebase.auth().onAuthStateChanged(user => {
+        const subscriber = firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 usersRef
                     .doc(user.uid)
@@ -30,20 +31,26 @@ export default function App() {
                         const userData = document.data()
                         setLoading(false)
                         setUser(userData)
-                    })
+                        setLoggedIn(true)
+  })
                     .catch((error) => {
                         setLoading(false)
                     });
             } else {
                 setLoading(false)
+                setLoggedIn(false)
             }
         });
+        return subscriber; // unsubscribe on unmount
     }, []);
 
     if (loading) {
         return (
-            <Text>Loading...</Text>
-        )
+            <View style={{flex:1, alignItems: 'center',justifyContent: 'center'}}>
+                <ActivityIndicator size={80} color={'#8962F8'}/>
+            </View>
+
+            )
     }
 
     return (
@@ -59,7 +66,7 @@ export default function App() {
                     // },
                 }}
             >
-                { user ? (
+                { loggedIn ? (
                     <>
                     <Stack.Screen name="Home" options={{headerShown: false}}>
                         {props => <HomeScreen {...props} extraData={user} />}

@@ -1,43 +1,20 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-    buttonsWrapper: {
+    buttonRegister: {
         flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-evenly',
-        marginTop: 20,
-        padding: 20,
-    },
-    button: {
-        backgroundColor: 'white',
+        backgroundColor: '#8962F8',
         elevation: 3,
         height: 48,
-        borderRadius: 20,
+        borderRadius: 12,
         alignItems: "center",
         justifyContent: 'center',
         padding: 20,
-
-    },
-    buttonTitle: {
-        color: '#BEBEBE',
-        fontSize: 16,
-        // fontWeight: 'bold'
-    },
-    buttonRegister: {
-        backgroundColor: '#DF1125',
-        marginLeft: 'auto',
-        marginRight: 40,
-        marginTop: 20,
-        marginBottom: 30,
-        paddingTop: 20,
-        paddingBottom: 20,
-        paddingLeft: 30,
-        paddingRight: 30,
-        height: 48,
-        borderRadius: 20,
-        alignItems: "center",
-        justifyContent: 'center'
-    },
+        width: '80%',
+        marginLeft: '10%',
+        marginTop: 24,
+        marginRight: '10%',
+        },
     buttonRegisterTitle: {
         color: 'white',
         fontSize: 16,
