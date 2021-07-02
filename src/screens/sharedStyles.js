@@ -14,7 +14,7 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingTop: 40,
-        padding: 16,
+        // padding: 16,
         width: '100%',
 
     },

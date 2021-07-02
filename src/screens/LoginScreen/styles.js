@@ -10,12 +10,14 @@ export default StyleSheet.create({
     },
     button: {
         backgroundColor: 'white',
-        elevation: 3,
+        elevation: 1,
         height: 48,
         borderRadius: 20,
         alignItems: "center",
         justifyContent: 'center',
         padding: 20,
+marginVertical: 12,
+
 
     },
     buttonTitle: {
@@ -39,7 +41,7 @@ export default StyleSheet.create({
         justifyContent: 'center'
     },
     buttonLoginTitle: {
-        color: 'white',
+        color: '#8962F8',
         fontSize: 16,
         fontWeight: 'bold'
     },

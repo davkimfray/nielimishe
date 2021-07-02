@@ -5,11 +5,11 @@ import {createStackNavigator} from '@react-navigation/stack'
 import {
     LoginScreen, HomeScreen, RegistrationScreen, HelpScreen, ChildLevelScreen,
     ChildBirthdayScreen, ChildNameScreen, CoursesScreen, EBooksScreen, ParentGuideScreen,
-    AddCourseScreen, ProfileScreen, AddEbookScreen
+    AddCourseScreen, ProfileScreen, AddEbookScreen, CourseContentScreen
 } from './src/screens'
 import {firebase} from './src/firebase/config'
 import {decode, encode} from 'base-64'
-import {View, Text} from "react-native";
+import {View, Text, Image} from "react-native";
 
 if (!global.btoa) {
     global.btoa = encode
@@ -49,7 +49,9 @@ export default function App() {
 
     if (loading) {
         return (
-            <Text>Loading...</Text>
+
+            // <Text>Loading...</Text>
+            <Image source={require('../nielimishe/assets/nielimishe-Splash.png')} />
         )
     }
 
@@ -83,9 +85,9 @@ export default function App() {
                         <Stack.Screen name="Courses" options={{headerShown: false}}>
                             {props => <CoursesScreen {...props} extraData={user}/>}
                         </Stack.Screen>
-                        <Stack.Screen name="CourseContentScreen" options={{headerShown: false}}>
-                            {props => <CourseContentScreen {...props} extraData={user}/>}
-                        </Stack.Screen>
+                        {/*<Stack.Screen name="CourseContentScreen" options={{headerShown: false}}>*/}
+                        {/*    {props => <CourseContentScreen {...props} extraData={user}/>}*/}
+                        {/*</Stack.Screen>*/}
                         <Stack.Screen name="AddCourseScreen" options={{headerShown: false}}>
                             {props => <AddCourseScreen {...props} extraData={user}/>}
                         </Stack.Screen>
