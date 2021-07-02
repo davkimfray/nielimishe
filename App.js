@@ -5,7 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack'
 import {
     LoginScreen, HomeScreen, RegistrationScreen, HelpScreen, ChildLevelScreen,
     ChildBirthdayScreen, ChildNameScreen, CoursesScreen, EBooksScreen, ParentGuideScreen,
-    AddCourseScreen, ProfileScreen, AddEbookScreen
+    AddCourseScreen, ProfileScreen, AddEbookScreen, CourseContentScreen, EBooksContentScreen
 } from './src/screens'
 import {firebase} from './src/firebase/config'
 import {decode, encode} from 'base-64'
@@ -102,6 +102,9 @@ export default function App() {
                         </Stack.Screen>
                         <Stack.Screen name="AddEbookScreen" options={{headerShown: false}}>
                             {props => <AddEbookScreen {...props} extraData={user}/>}
+                        </Stack.Screen>
+                        <Stack.Screen name="EBooksContentScreen" options={{headerShown: false}}>
+                            {props => <EBooksContentScreen {...props} extraData={user}/>}
                         </Stack.Screen>
                     </>
                 ) : (

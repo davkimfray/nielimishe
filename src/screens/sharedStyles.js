@@ -60,7 +60,7 @@ export default StyleSheet.create({
         paddingLeft: 16,
         borderWidth: 1,
         borderColor: "#BEBEBE",
-        borderRadius: 16,
+        borderRadius: 12,
         width: '80%'
     },
     selectInput: {
@@ -73,7 +73,7 @@ export default StyleSheet.create({
         paddingLeft: 24,
         borderWidth: 1,
         borderColor: "#aaaaaa",
-        borderRadius: 16,
+        borderRadius: 12,
         width: '80%',
         alignItems: 'center'
     },

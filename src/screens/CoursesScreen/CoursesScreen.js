@@ -11,6 +11,10 @@ export default function CoursesScreen(props) {
     const [coursesData, setCoursesData] = useState([]);
     const [loading, setLoading] = useState(true)
 
+    const getRandomColor = () => { 
+        return 'rgb(' + (Math.floor(Math.random() * 252)) + ',' + (Math.floor(Math.random() * 252)) + ',' + (Math.floor(Math.random() * 252)) + ')';
+     }
+
     const colors = ['#FD820B','#DF1125']
 let buttonStyle = [];
     
@@ -72,7 +76,7 @@ let contentLevel
             {courses.map((course, index) => (
                 <TouchableOpacity
                     key={index}
-                    style={[styles.button, {backgroundColor: colors[index]}]}
+                    style={[styles.button, {backgroundColor: getRandomColor()}]}
 
                     onPress={() => props.navigation.navigate('CourseContentScreen', {courseName: course, courseData: coursesData[course]})}>
                     <Text style={styles.buttonTitle}>{course}</Text>
@@ -81,14 +85,14 @@ let contentLevel
         </View>
 }
         {/*<View style={styles.container}>*/}
-       { props.extraData.role === 'admin' ?
+       { props.extraData.role === 'admin' ? 
                 <TouchableOpacity
                     style={styles.addButton}
                     onPress={() => props.navigation.navigate('AddCourseScreen', {level: props.route.params.level})}
                     >
                     <Icon
                         name='plus'
-                        color='red'
+                        color='white'
                         size={30}
                         // style={{padding: 20}}
                     />

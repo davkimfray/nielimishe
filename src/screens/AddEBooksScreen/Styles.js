@@ -1,6 +1,21 @@
 import {StyleSheet} from "react-native";
 
 export default StyleSheet.create({
+    button: {
+        flexDirection: 'row',
+        backgroundColor: '#8962F8',
+        elevation: 6,
+        height: 50,
+        borderRadius: 12,
+        alignItems: "center",
+        justifyContent: 'center',
+        padding: 24,
+        width: '80%',
+        marginTop: 24,
+        marginLeft: '10%',
+        marginRight: '10%',
+
+    },
     container: {
          flex: 1,
         width: '100%',
@@ -15,7 +30,7 @@ export default StyleSheet.create({
         width: '80%',
         alignItems: 'center',
         paddingLeft: 10,
-        marginTop: 65,
+        marginTop: 16,
         backgroundColor: 'white'
     },
     fab: {

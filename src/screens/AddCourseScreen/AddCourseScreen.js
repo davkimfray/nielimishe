@@ -41,10 +41,6 @@ export default function AddCourseScreen(props) {
             alert("Select available course or Select Add New Course to add new one.")
             return
         }
-        // if (level.trim().length < 1) {
-        //     alert("Select Level.")
-        //     return
-        // }
         if (link.trim().length < 1) {
             alert("Add Content Link.")
             return
@@ -55,9 +51,7 @@ export default function AddCourseScreen(props) {
             console.log(newCourse)
             let data = {}
             data[newCourse] = firebase.firestore.FieldValue.arrayUnion(link)
-console.log(data);
                     const courseRef = firebase.firestore().collection('courses')
-                    const courseContentRef = firebase.firestore().collection('courseContent')
                     courseRef
                         .doc(props.route.params.level)
                         .update(data)
@@ -67,41 +61,7 @@ console.log(data);
                         .catch((error) => {
                             alert(error)
                         });
-            // courseContentRef
-            //             .doc(uid)
-            //             .set(data)
-            //             .then(() => {
-            //                 navigation.navigate('Home', {user: data})
-            //             })
-            //             .catch((error) => {
-            //                 alert(error)
-            //             });
         }
-        // firebase
-        //     .auth()
-        //     .createUserWithEmailAnddescription(email, description)
-        //     .then((response) => {
-        //         const uid = response.user.uid
-        //         const data = {
-        //             id: uid,
-        //             email,
-        //             fullName: email,
-        //             role: 'user'
-        //         };
-        //         const usersRef = firebase.firestore().collection('users')
-        //         usersRef
-        //             .doc(uid)
-        //             .set(data)
-        //             .then(() => {
-        //                 navigation.navigate('Home', {user: data})
-        //             })
-        //             .catch((error) => {
-        //                 alert(error)
-        //             });
-        //     })
-        //     .catch((error) => {
-        //         alert(error)
-        //     });
     }
 
     return (
@@ -150,20 +110,6 @@ console.log(data);
                     : <Text/>
                 }
 
-                {/* <Text style={{marginLeft: '12%', color: 'gray'}}>Select Level</Text>
-                <View style={sharedStyles.selectInput}>
-                    <Picker
-                        selectedValue={level}
-                        style={{width: '100%'}}
-                        onValueChange={(levelValue, itemIndex) => setLevel(levelValue)}
-                        placeholder="Select Level"
-                    >
-                        <Picker.Item label="Select Level" color="gray" value=""/>
-                        <Picker.Item label="Low" value="Low"/>
-                        <Picker.Item label="Medium" value="Medium"/>
-                        <Picker.Item label="High" value="High"/>
-                    </Picker>
-                </View> */}
                 <Text style={{marginLeft: '12%', marginTop: 16, color: 'gray'}}>Add Video Id</Text>
                 <TextInput
                     style={sharedStyles.input}
