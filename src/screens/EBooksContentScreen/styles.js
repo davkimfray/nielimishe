@@ -2,19 +2,33 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
     container: {
-        flex: 1,
+        // flex: 1,
+        // flexDirection: 'column',
         alignItems: 'center',
-        // justifyContent: 'center',
+        width: 300,
+        // borderRadius: 20,
+        // height: 300,
+        borderRadius: 20,
+        // margin: 20
+    },
+    image: {
+        height: 350,
+        backgroundColor: 'white',
+        elevation: 6,
         width: '100%',
-        paddingTop: 50,
-        paddingBottom: 50,
+        borderRadius: 20,
+        elevation: 6,
+
+        margin: 20
+
     },
     button: {
         // backgroundColor: '#8962F8',
         elevation: 3,
         height: 100,
-        width: '80%',
+        width: 300,
         borderRadius: 20,
+        // position:'absolute',
         alignItems: "center",
         justifyContent: 'center',
         padding: 20,
@@ -26,17 +40,10 @@ export default StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold'
     },
-    addButton: {
-        backgroundColor: '#8962F8',
-        elevation: 3,
-        height: 60,
-        borderRadius: 50,
-        alignItems: "center",
-        justifyContent: 'center',
-        padding: 16,
+    fab: {
         position: 'absolute',
-        bottom: 36,
-        right: 36,
-
-    },
+        margin: 16,
+        right: 0,
+        bottom: 0
+    }
 })

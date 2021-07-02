@@ -67,7 +67,7 @@ export default function ChildBirthdayScreen(props) {
 
             <TouchableOpacity
                     style={styles.button}
-                    onPress={() => props.navigation.navigate('ChildName', {level: props.route.params.level, birthDay: date})}
+                    onPress={() => props.navigation.navigate('ChildName', {children: props.route.params.children, level: props.route.params.level, birthDay: new Date(date).toDateString()})}
                 >
                         <Text style={styles.buttonTitle}>Next</Text>
                 </TouchableOpacity>

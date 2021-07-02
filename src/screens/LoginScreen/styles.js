@@ -1,23 +1,19 @@
 import {StyleSheet} from "react-native";
 
 export default StyleSheet.create({
-    buttonsWrapper: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-evenly',
-        marginTop: 20,
-        padding: 20,
-    },
     button: {
-        backgroundColor: 'white',
-        elevation: 1,
+        flexDirection: 'row',
+        backgroundColor: '#8962F8',
+        elevation: 3,
         height: 48,
-        borderRadius: 20,
+        borderRadius: 12,
         alignItems: "center",
         justifyContent: 'center',
         padding: 20,
-marginVertical: 12,
-
+        width: '80%',
+        marginTop: 24,
+        marginLeft: '10%',
+        marginRight: '10%',
 
     },
     buttonTitle: {
@@ -25,23 +21,9 @@ marginVertical: 12,
         fontSize: 16,
         // fontWeight: 'bold'
        },
-    buttonLogin: {
-        backgroundColor: '#DF1125',
-        marginLeft: 'auto',
-        marginRight: 40,
-        marginTop: 20,
-        marginBottom: 30,
-        paddingTop: 20,
-        paddingBottom: 20,
-        paddingLeft: 30,
-        paddingRight: 30,
-        height: 48,
-        borderRadius: 20,
-        alignItems: "center",
-        justifyContent: 'center'
-    },
+
     buttonLoginTitle: {
-        color: '#8962F8',
+        color: 'white',
         fontSize: 16,
         fontWeight: 'bold'
     },

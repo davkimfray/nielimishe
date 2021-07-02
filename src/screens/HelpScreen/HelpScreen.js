@@ -16,10 +16,6 @@ export default function HelpScreen({navigation}) {
         // navigation.navigate('Help')
     }
 
-    const onRegisterPress = () => {
-
-    }
-
     return (
         <View style={sharedStyles.container}>
             <KeyboardAwareScrollView
@@ -50,13 +46,11 @@ export default function HelpScreen({navigation}) {
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
                 />
-                <View style={styles.buttonsWrapper}>
                     <TouchableOpacity
                         style={styles.button}
                         onPress={() => navigation.navigate('Login')}>
                         <Text style={styles.buttonTitle}>Send recover mail</Text>
                     </TouchableOpacity>
-                </View>
 
             </KeyboardAwareScrollView>
         </View>
