@@ -94,7 +94,7 @@ export default function HomeScreen(props) {
             </TouchableOpacity>
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => {props.navigation.navigate(props.extraData.role === 'admin' ? 'ChildLevel' : child ? 'ParentGuide' : 'ChildLevel', {goTo: 'ParentGuide'})}}>
+                onPress={() => {props.navigation.navigate('ParentGuide', {goTo: 'ParentGuide'})}}>
                 <Text style={styles.buttonTitle}>Parenting Guide</Text>
             </TouchableOpacity>
     </View>
