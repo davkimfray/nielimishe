@@ -126,7 +126,7 @@ const VideoModal = ({ guide, onClose }) => {
       <View
         style={{
           flex: 1,
-          backgroundColor: "#ffffffdd",
+          backgroundColor: "#EDD892cc",
           justifyContent: "center",
         }}
       >
