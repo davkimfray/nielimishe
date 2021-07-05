@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react'
-import { FlatList, Keyboard, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { FlatList, ActivityIndicator, Keyboard, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import styles from './styles';
 import { firebase } from '../../firebase/config'
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -11,44 +11,29 @@ export default function HomeScreen(props) {
     const [entities, setEntities] = useState([])
     const [child, setChild] = useState('')
     const [userID, setUserID] = useState(null)
+    const [loading, setLoading] = useState(false)
 
     const entityRef = firebase.firestore().collection('child')
 
     useEffect(() => {
         setUserID(props.extraData.id)
-        setChild(props.extraData.children)
-    }, [])
+        setLoading(true)
+ 
+        const usersRef = firebase.firestore().collection('users');
+                usersRef
+                    .doc(props.extraData.id)
+                    .get()
+                    .then((document) => {
+                        const userData = document.data()
+                        setLoading(false)
+                        setChild(userData.children)
 
-    const onAddButtonPress = () => {
-        if (entityText && entityText.length > 0) {
-            const timestamp = firebase.firestore.FieldValue.serverTimestamp();
-            const data = {
-                text: entityText,
-                authorID: userID,
-                createdAt: timestamp,
-            };
-            entityRef
-                .add(data)
-                .then(_doc => {
-                    setEntityText('')
-                    Keyboard.dismiss()
-                })
-                .catch((error) => {
-                    alert(error)
-                });
-        }
-    }
+  })
+                    .catch((error) => {
+                        setLoading(false)
+                    });
+    }, []);
 
-
-    const renderEntity = ({item, index}) => {
-        return (
-            <View style={styles.entityContainer}>
-                <Text style={styles.entityText}>
-                    {index}. {item.text}
-                </Text>
-            </View>
-        )
-    }
 
     return (
 
@@ -66,6 +51,11 @@ export default function HomeScreen(props) {
                         />
                     </TouchableOpacity>
                 </View>
+                {loading ? 
+           <View style={{flex:1, alignItems: 'center',justifyContent: 'center'}}>
+           <ActivityIndicator size={80} color={'#8962F8'}/>
+       </View>
+        :
                 <View style={styles.container}>
             {/*<View>*/}
             {/*    <TextInput*/}
@@ -98,6 +88,7 @@ export default function HomeScreen(props) {
                 <Text style={styles.buttonTitle}>Parenting Guide</Text>
             </TouchableOpacity>
     </View>
+}
     </View>
 )
 }
