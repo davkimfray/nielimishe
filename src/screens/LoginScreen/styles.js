@@ -3,7 +3,7 @@ import {StyleSheet} from "react-native";
 export default StyleSheet.create({
     button: {
         flexDirection: 'row',
-        backgroundColor: '#8962F8',
+        backgroundColor: '#FCB97D',
         elevation: 3,
         height: 48,
         borderRadius: 12,
@@ -17,7 +17,7 @@ export default StyleSheet.create({
 
     },
     buttonTitle: {
-        color: '#BEBEBE', 
+        color: '#BEBEBE',
         fontSize: 16,
         // fontWeight: 'bold'
        },

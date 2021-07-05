@@ -108,7 +108,7 @@ export default function RegistrationScreen({navigation}) {
                     disabled={loading}
                     onPress={() => onRegisterPress()}>
                         {loading ? 
-                            <ActivityIndicator size={'large'} color={'#8962F8'} style={{paddingRight: 16}}/>
+                            <ActivityIndicator size={'large'} color={'#FCB97D'} style={{paddingRight: 16}}/>
                         :   <Text/>
                         }
                     <Text style={styles.buttonRegisterTitle}>Register</Text>

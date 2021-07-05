@@ -21,7 +21,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/nielimishe-logo-Splash.png",
+        "foregroundImage": "./assets/nielimishe-logo.png",
         "backgroundColor": "#FFFFFF"
       }
     },

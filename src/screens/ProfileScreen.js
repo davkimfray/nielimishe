@@ -73,7 +73,7 @@ export default function ProfileScreen(props) {
 </View>
 
 <View style={{flexDirection: 'row',alignItems: 'center',justifyContent: 'flex-start',width: '90%',padding: 16}}>
-            <Text style={{textTransform: 'uppercase',backgroundColor: '#8962F8',borderRadius: 50, padding: 16, paddingLeft:24,
+            <Text style={{textTransform: 'uppercase',backgroundColor: '#FCB97D',borderRadius: 50, padding: 16, paddingLeft:24,
                  paddingRight:24, color: 'white',fontSize: 24}}>
                  {props.extraData.fullName.slice(0,1)}
             </Text>
@@ -89,7 +89,7 @@ export default function ProfileScreen(props) {
                 <Icon
                     style={{padding:8}}
                     name='child'
-                    color='#8962F8'
+                    color='#FCB97D'
                     size={36}
                 />
                 <View style={{marginLeft: 24}}>
@@ -99,7 +99,7 @@ export default function ProfileScreen(props) {
 
             {loading ? 
            <View style={{marginTop: '30%', marginLeft: '35%', position: 'absolute'}}>
-           <ActivityIndicator size={60} color={'#8962F8'}/>
+           <ActivityIndicator size={60} color={'#FCB97D'}/>
        </View>
         :
             <FlatList
@@ -112,7 +112,7 @@ export default function ProfileScreen(props) {
           <View style={{marginLeft: 8}}>
               <Text style={{fontSize: 18, fontWeight: 'bold'}}>{item.name}</Text>
               <View style={{flexDirection: 'row'}}>
-                  <Icon style={{marginRight: 16}} name='birthday-cake' color='#8962F8' size={18}/>
+                  <Icon style={{marginRight: 16}} name='birthday-cake' color='#FCB97D' size={18}/>
                   <Text style={{fontSize: 16}}>{item.birthDay}</Text>
               </View>
           </View>
@@ -132,7 +132,7 @@ export default function ProfileScreen(props) {
             }
              <Text style={{flex:1}}/>
              <TouchableOpacity
-                 style={{flexDirection: 'row',alignItems: 'center',justifyContent: 'center',width: '90%', marginBottom:16, backgroundColor: '#8962F8', elevation:3,borderRadius:20,padding:20}}
+                 style={{flexDirection: 'row',alignItems: 'center',justifyContent: 'center',width: '90%', marginBottom:16, backgroundColor: '#FCB97D', elevation:3,borderRadius:20,padding:20}}
 
                onPress={() => props.navigation.navigate('ChildLevel', {children: userData.children})}>
                    <Icon
