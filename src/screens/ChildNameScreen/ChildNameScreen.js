@@ -54,12 +54,11 @@ export default function ChildNameScreen(props) {
                     ]
                 };
             }
-          console.log(data);
             childRef
                 .set(data)
                 .then(_doc => {
                     setChildName('')
-                    props.navigation.navigate('Courses')
+                    props.navigation.navigate('Home')
                     Keyboard.dismiss()
                     setLoading(false)
                        })
