@@ -67,7 +67,7 @@ let contentLevel
                 onPress={() => {props.navigation.navigate('ProfileScreen')}}>
                 <Icon
                             name='user-circle'
-                            color='#8962F8'
+                            color='#FCB97D'
                             size={36}
                         />
                     </TouchableOpacity>
@@ -75,7 +75,7 @@ let contentLevel
      
             {loading ? 
            <View style={{flex:1, alignItems: 'center',justifyContent: 'center'}}>
-           <ActivityIndicator size={80} color={'#8962F8'}/>
+           <ActivityIndicator size={80} color={'#FCB97D'}/>
        </View>
         :
         <FlatList
@@ -96,7 +96,7 @@ let contentLevel
             { props.extraData.role === 'admin' ? 
                 <TouchableOpacity
                     style={{
-                    backgroundColor: '#8962F8',
+                    backgroundColor: '#FCB97D',
                     elevation: 3,
                     height: 60,
                     borderRadius: 50,

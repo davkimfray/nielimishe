@@ -4,7 +4,8 @@ export default StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
-        width: '100%'
+        width: '100%',
+        backgroundColor: '#EDD892'
     },
     title: {
 
@@ -19,7 +20,7 @@ export default StyleSheet.create({
 
     },
     screenTitle: {
-        backgroundColor: '#8962F8',
+        backgroundColor: '#FCB97D',
         color: '#fff',
         width: '50%',
         padding: 16,
@@ -42,7 +43,7 @@ export default StyleSheet.create({
         alignSelf: "center",
         marginBottom: 48,
         fontSize: 24,
-        color:  '#788eec',
+        color:  '#fff',
         fontWeight: 'bold'
     },
     disabledButton: {
@@ -98,7 +99,7 @@ export default StyleSheet.create({
         height: 64,
         alignItems: "center",
         justifyContent: 'center',
-        backgroundColor: '#8962F8',
+        backgroundColor: '#FCB97D',
         elevation: 3,
         width: '80%',
         borderRadius: 16,
@@ -120,7 +121,7 @@ export default StyleSheet.create({
         color: '#2e2e2d'
     },
     footerLink: {
-        color: "#8962F8",
+        color: "#FCB97D",
         fontWeight: "bold",
         fontSize: 16
     }

@@ -81,7 +81,7 @@ export default function LoginScreen({navigation}) {
                     disabled={loading}
                     onPress={() => onLoginPress()}>
                         {loading ? 
-                            <ActivityIndicator size={'large'} color={'#8962F8'} style={{paddingRight: 16}}/>
+                            <ActivityIndicator size={'large'} color={'#FCB97D'} style={{paddingRight: 16}}/>
                         :   <Text/>
                         }
                     <Text style={styles.buttonLoginTitle}>Log in</Text>

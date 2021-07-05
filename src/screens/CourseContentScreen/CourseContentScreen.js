@@ -39,7 +39,7 @@ export default function CourseContentScreen(props) {
   const closeModal = useCallback(() => showModal(false), []);
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#EDD892' }}>
 
 <View style={sharedStyles.screenTitleWrapper}>
                     <TouchableOpacity 
@@ -58,7 +58,7 @@ export default function CourseContentScreen(props) {
                 onPress={() => {props.navigation.navigate('ProfileScreen')}}>
                 <Icon
                             name='user-circle'
-                            color='#8962F8'
+                            color='#FCB97D'
                             size={36}
                         />
                     </TouchableOpacity>
@@ -114,7 +114,7 @@ const VideoItem = ({ videoId, onPress }) => {
     return (
       <TouchableOpacity
         onPress={() => onPress(videoId)}
-        style={{ flexDirection: "row", margin: 16, marginVertical: 8, elevation: 3, backgroundColor: 'white', padding: 8, borderRadius:12 }}
+        style={{ flexDirection: "row", margin: 16, marginVertical: 8, elevation: 3, backgroundColor: '#fff', padding: 8, borderRadius:12 }}
       >
         <Image
           source={{ uri: videoMeta.thumbnail_url }}
@@ -174,7 +174,7 @@ const VideoModal = ({ videoId, onClose }) => {
         justifyContent: "center",
       }}
     >
-      <View style={{ backgroundColor: "white", padding: 16 }}>
+      <View style={{ backgroundColor: "#fff", padding: 16 }}>
         <Text onPress={onClose} style={{ textAlign: "right" }}>
           Close
         </Text>

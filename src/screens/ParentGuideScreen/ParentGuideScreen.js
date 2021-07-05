@@ -55,7 +55,7 @@ export default function ParentGuideScreen(props) {
         
             {loading ? 
            <View style={{marginTop: '30%', marginLeft: '35%', position: 'absolute'}}>
-           <ActivityIndicator size={60} color={'#8962F8'}/>
+           <ActivityIndicator size={60} color={'#FCB97D'}/>
        </View>
         :
             <FlatList
@@ -69,7 +69,7 @@ export default function ParentGuideScreen(props) {
                     onPress={() => onGuidePress(item)}>
                                <Icon
                     name={item.icon} 
-                    color='#8962F8'
+                    color='#FCB97D'
                     size={36}
                     style={{paddingBottom: 8}}
                 />
@@ -134,7 +134,7 @@ const VideoModal = ({ guide, onClose }) => {
                 <View style={{flexDirection: 'row', alignItems:'center', justifyContent: 'center', paddingTop:8}}>
                 <Icon
                     name={guide.icon}
-                    color='#8962F8'
+                    color='#FCB97D'
                     size={30}
                     style={{marginLeft:-24, paddingRight: 20}}
                 />
@@ -152,14 +152,14 @@ const VideoModal = ({ guide, onClose }) => {
         contentContainerStyle={{alignItems: 'flex-start',padding:8}}
         data={guide.guides}
         renderItem={({ item, index }) => (
-            <Text style={{"borderColor": "#8962F8","borderLeftWidth": 2,marginVertical:12, paddingLeft: 16, fontSize:16}}>
+            <Text style={{"borderColor": "#FCB97D","borderLeftWidth": 2,marginVertical:12, paddingLeft: 16, fontSize:16}}>
                     {item}
                 </Text>
         )}
         keyExtractor={(item, index) => (item.name+index)}
       /> 
                    <TouchableOpacity
-                 style={{flexDirection: 'row',alignItems: 'center',justifyContent: 'center',width: '90%', margin:'5%', marginBottom:16, backgroundColor: '#8962F8', elevation:3,borderRadius:20,padding:20}}
+                 style={{flexDirection: 'row',alignItems: 'center',justifyContent: 'center',width: '90%', margin:'5%', marginBottom:16, backgroundColor: '#FCB97D', elevation:3,borderRadius:20,padding:20}}
 
                onPress={onClose}>
                    <PointIcon

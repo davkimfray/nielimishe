@@ -62,14 +62,14 @@ let contentLevel
                 onPress={() => {props.navigation.navigate('ProfileScreen')}}>
                 <Icon
                             name='user-circle'
-                            color='#8962F8'
+                            color='#FCB97D'
                             size={36}
                         />
                     </TouchableOpacity>
                 </View>
         {loading ? 
            <View style={{flex:1, alignItems: 'center',justifyContent: 'center'}}>
-           <ActivityIndicator size={80} color={'#8962F8'}/>
+           <ActivityIndicator size={80} color={'#FCB97D'}/>
        </View>
         :
         <View style={styles.container}>

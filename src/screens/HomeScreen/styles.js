@@ -8,7 +8,7 @@ export default StyleSheet.create({
         width: '100%'
     },
     button: {
-        backgroundColor: '#8962F8',
+        backgroundColor: '#FCB97D',
         elevation: 3,
         height: 120,
         width: '80%',

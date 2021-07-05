@@ -14,7 +14,6 @@ export default StyleSheet.create({
     image: {
         height: 350,
         backgroundColor: 'white',
-        elevation: 6,
         width: '100%',
         borderRadius: 20,
         elevation: 6,

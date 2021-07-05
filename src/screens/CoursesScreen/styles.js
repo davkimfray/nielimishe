@@ -27,7 +27,7 @@ export default StyleSheet.create({
         fontWeight: 'bold'
     },
     addButton: {
-        backgroundColor: '#8962F8',
+        backgroundColor: '#FCB97D',
         elevation: 3,
         height: 60,
         borderRadius: 50,

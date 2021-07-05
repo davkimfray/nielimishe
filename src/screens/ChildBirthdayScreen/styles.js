@@ -9,7 +9,7 @@ export default StyleSheet.create({
         padding: 20,
     },
     button: {
-        backgroundColor: '#8962F8',
+        backgroundColor: '#FCB97D',
         elevation: 4,
         height: 48,
         width: '80%',

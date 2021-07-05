@@ -61,7 +61,7 @@ export default function HomeScreen(props) {
                 onPress={() => {props.navigation.navigate('ProfileScreen')}}>
                 <Icon
                             name='user-circle'
-                            color='#8962F8'
+                            color='#FCB97D'
                             size={36}
                         />
                     </TouchableOpacity>

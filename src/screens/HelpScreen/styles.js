@@ -10,7 +10,7 @@ export default StyleSheet.create({
     },
     button: {
         flexDirection: 'row',
-        backgroundColor: '#8962F8',
+        backgroundColor: '#FCB97D',
         elevation: 3,
         height: 48,
         borderRadius: 12,
