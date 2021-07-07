@@ -110,6 +110,11 @@ export default StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold'
     },
+    textWithShadow:{
+        textShadowColor: 'rgba(0, 0, 0, 0.5)',
+        textShadowOffset: {width: 0, height: 0.6},
+        textShadowRadius: 5
+    },
     footerView: {
         flex: 1,
         alignItems: "center",

@@ -122,6 +122,10 @@ export default function ParentGuideScreen(props) {
 
 const VideoModal = ({ guide, onClose }) => {
 
+    const onDelete = (index) => {
+        alert('delete ' + index)
+      }
+
     return (
       <View
         style={{
@@ -139,13 +143,13 @@ const VideoModal = ({ guide, onClose }) => {
                     style={{marginLeft:-24, paddingRight: 20}}
                 />
                 <Text style={{fontSize:18,fontWeight:'bold'}}>{guide.name}</Text>
-                {/* <PointIcon
-                    onPress={onClose}
-                     name='close-circle-outline' 
+                <PointIcon
+                    onPress={()=>onDelete(guide.name)}
+                     name='delete' 
                     color='red'
                     size={28}
-                    style={{padding: 4,marginRight:8, elevation:3, backgroundColor:'white',position:'absolute',borderRadius:50, right:0}}
-                /> */}
+                    style={[sharedStyles.textWithShadow, {padding: 4, marginRight:8, position:'absolute',right:0}]}
+                />
               </View>   
 
                  <FlatList

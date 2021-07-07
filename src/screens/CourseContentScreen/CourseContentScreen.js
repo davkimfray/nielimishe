@@ -13,6 +13,7 @@ import YoutubeIframe, { getYoutubeMeta } from "react-native-youtube-iframe";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { firebase } from '../../firebase/config'
 import Icon from "react-native-vector-icons/FontAwesome";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import sharedStyles from "../sharedStyles";
 
 export default function CourseContentScreen(props) {

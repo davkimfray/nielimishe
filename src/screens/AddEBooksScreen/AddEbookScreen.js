@@ -119,7 +119,7 @@ const AddEbookScreen = (props) => {
                 const uploadTask = storageRef.child('book/' + bookName).put(blob);
                 uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
                     (snapshot) =>{
-                        console.log(snapshot.bytesTransferred);
+                        // console.log(snapshot.bytesTransferred);
                         // const uploadProgress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes)) * 80;
                         // setProgress(10 + uploadProgress)
                     },(error) =>{
@@ -128,7 +128,12 @@ const AddEbookScreen = (props) => {
                         throw error
                     },() =>{
                         uploadTask.snapshot.ref.getDownloadURL().then((url) =>{
-                            data[newCategory] = firebase.firestore.FieldValue.arrayUnion(url)
+                            const ebookData = {
+                                name: bookName,
+                                image: url,
+                                description
+                            }
+                            data[newCategory] = firebase.firestore.FieldValue.arrayUnion(ebookData)
                             ebookRef
                                 .update(data)
                                 .then(() => {

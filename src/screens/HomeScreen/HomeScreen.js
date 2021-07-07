@@ -11,27 +11,25 @@ export default function HomeScreen(props) {
     const [entities, setEntities] = useState([])
     const [child, setChild] = useState('')
     const [userID, setUserID] = useState(null)
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     const entityRef = firebase.firestore().collection('child')
 
     useEffect(() => {
-        setUserID(props.extraData.id)
-        setLoading(true)
- 
-        const usersRef = firebase.firestore().collection('users');
+        const usersRef = firebase.firestore().collection('users').doc(props.extraData.id)        ;
                 usersRef
-                    .doc(props.extraData.id)
-                    .get()
-                    .then((document) => {
+                    .onSnapshot(document => {
                         const userData = document.data()
                         setLoading(false)
+                        setUserID(props.extraData.id)
                         setChild(userData.children)
+                        console.log(userData.children
+                            );
 
   })
-                    .catch((error) => {
-                        setLoading(false)
-                    });
+                    // .catch((error) => {
+                    //     setLoading(false)
+                    // });
     }, []);
 
 
