@@ -17,7 +17,7 @@ const AddEbookScreen = (props) => {
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
     const [loading, setLoading] = useState(false)
-            const ebookRef = firebase.firestore().collection('ebooks').doc(props.route.params.level)
+    const ebookRef = firebase.firestore().collection('ebooks').doc(props.route.params.level)
 
 
     useEffect(  () => {
@@ -200,7 +200,7 @@ const AddEbookScreen = (props) => {
                 <View style={{width: '80%', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
                     <TextInput style={[Styles.input, {width: '70%', marginTop: 30}]} placeholder='Add Image'
                                placeholderTextColor='#bebebe' editable={false} value={image ? image.uri : ''}/>
-                    <FAB style={Styles.fab} medium icon="image-plus" onPress={PickImage} color='#8962F8'/>
+                    <FAB style={Styles.fab} medium icon="image-plus" onPress={PickImage} color='#FCB97D'/>
                 </View>
                 <Text style={{flex: 1}}/>{/*Just for vertical align center*/}
                 <TouchableOpacity
@@ -208,7 +208,7 @@ const AddEbookScreen = (props) => {
                     disabled={loading}
                     onPress={() => onSubmitPressed()}>
                                    {loading ? 
-                            <ActivityIndicator size={'large'} color={'#8962F8'} style={{paddingRight: 16}}/>
+                            <ActivityIndicator size={'large'} color={'#FCB97D'} style={{paddingRight: 16}}/>
                         :   <Text/>
                         }
                     <Text style={{color: '#fff',fontSize: 16,fontWeight: 'bold'}}>Submit</Text>
