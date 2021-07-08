@@ -1,12 +1,13 @@
 
 import React, { useEffect, useCallback, useState } from 'react'
-import { FlatList, Modal, ActivityIndicator, Keyboard, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { FlatList, Modal, ActivityIndicator, Keyboard, Text, TextInput, TouchableOpacity, View, Alert } from 'react-native'
 import styles from './styles';
 import { firebase } from '../../firebase/config'
 import sharedStyles from "../sharedStyles";
 import PointIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import BackIcon from "react-native-vector-icons/FontAwesome";
 import Icon from "react-native-vector-icons/FontAwesome5";
+// import {Alert} from "react-native-web";
 
 export default function ParentGuideScreen(props) {
     const [loading, setLoading] = useState(true)
@@ -124,7 +125,22 @@ export default function ParentGuideScreen(props) {
 const VideoModal = ({ guide, onClose }) => {
 
     const onDelete = (index) => {
-        alert('delete ' + index)
+        const usersRef = firebase.firestore().collection('guide');
+
+        Alert.alert(
+            'Delete this Guide',
+            'Click Delete to remove: ' + ' ' + index,
+            [{
+                text: 'Delete',
+                onPress: () => {
+                    usersRef.doc(index).delete().then(value => {
+                        console.log('item removed' + value)
+                    })
+                }
+            },
+                {text: 'Cancel'}
+            ]
+        )
       }
 
     return (
