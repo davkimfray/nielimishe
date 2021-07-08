@@ -10,6 +10,7 @@ export default function RegistrationScreen({navigation}) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+    const [phoneNumber, setPhoneNumber] = useState('')
     const [loading, setLoading] = useState(false)
 
 
@@ -28,6 +29,7 @@ export default function RegistrationScreen({navigation}) {
                     id: uid,
                     email,
                     fullName: email,
+                    phoneNumber,
                     role: 'user'
                 };
                 const usersRef = firebase.firestore().collection('users')
@@ -81,6 +83,16 @@ export default function RegistrationScreen({navigation}) {
                     value={email}
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
+                />
+                <TextInput
+                    style={sharedStyles.input}
+                    placeholder='Phone Number'
+                    placeholderTextColor="#aaaaaa"
+                    onChangeText={(text) => setPhoneNumber(text)}
+                    value={phoneNumber}
+                    underlineColorAndroid="transparent"
+                    autoCapitalize="none"
+                    keyboardType='numeric'
                 />
                 <TextInput
                     style={sharedStyles.input}

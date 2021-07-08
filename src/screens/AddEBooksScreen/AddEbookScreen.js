@@ -9,6 +9,7 @@ import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
 import {firebase} from '../../firebase/config'
 import * as FileSystem from 'expo-file-system';
+import axios from "axios";
 
 const AddEbookScreen = (props) => {
     const [bookName, setBookName] = useState('');
@@ -21,27 +22,28 @@ const AddEbookScreen = (props) => {
     const ebookRef = firebase.firestore().collection('ebooks').doc(props.route.params.level)
 
 
-    useEffect(  () => {
+    useEffect(() => {
         SelectImage();
-            ebookRef
-                .onSnapshot(
-                    querySnapshot => {
-                        if(querySnapshot.data())
+        ebookRef
+            .onSnapshot(
+                querySnapshot => {
+                    if (querySnapshot.data())
                         setCategories(Object.keys(querySnapshot.data()))
-                    },
-                    error => {
-                        console.log(error)
-                    }
-                )
-        }, [])
-  async  function SelectImage() {
-      if (Platform.OS !== 'web') {
-          const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+                },
+                error => {
+                    console.log(error)
+                }
+            )
+    }, [])
 
-          if (status !== 'granted') {
-              alert('Permission Denied!')
-          }
-      }
+    async function SelectImage() {
+        if (Platform.OS !== 'web') {
+            const {status} = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+            if (status !== 'granted') {
+                alert('Permission Denied!')
+            }
+        }
     }
 
 
@@ -54,10 +56,10 @@ const AddEbookScreen = (props) => {
             // quality: [1, 1]
             type: image,
         }).then(res => {
-     // console.log(result);
-     if (!res.cancelled) {
-        setImage(res);
-    }
+            // console.log(result);
+            if (!res.cancelled) {
+                setImage(res);
+            }
         })
     }
 
@@ -65,6 +67,19 @@ const AddEbookScreen = (props) => {
         setBookName(inputText)
 
     }
+
+    const sendSms = () => {
+        axios
+            .post('https://tanzaniatx.herokuapp.com/sms/', {
+                "phonenumber": "0686206206",
+                "message": "Hello Nielimishe have added a new Ebook, please open our app to check!"
+            }).then(r => {
+            console.log('response is: ', r);
+        }).catch(reason => {
+            console.log('error occured: ', reason)
+        })
+    }
+
 
     const onSubmitPressed = async () => {
 
@@ -82,7 +97,7 @@ const AddEbookScreen = (props) => {
                     alert("Add New Category or Select available category.")
                     return
                 } else newCategory = category
-            } else newCategory = selectedCategory  
+            } else newCategory = selectedCategory
         } else {
             alert("Select available category or Select Add New Category to add new one.")
             setLoading(false)
@@ -102,54 +117,55 @@ const AddEbookScreen = (props) => {
         if (newCategory.trim().length > 0 && bookName.trim().length > 0 && image) {
             const metadata = {
                 contentType: 'image/jpeg',
-              };
-              const blob = await new Promise((resolve, reject) => {
+            };
+            const blob = await new Promise((resolve, reject) => {
                 const xhr = new XMLHttpRequest();
-                xhr.onload = function() {
-                  resolve(xhr.response);
+                xhr.onload = function () {
+                    resolve(xhr.response);
                 };
-                xhr.onerror = function(e) {
-                  console.log(e);
-                  reject(new TypeError('Network request failed'));
+                xhr.onerror = function (e) {
+                    console.log(e);
+                    reject(new TypeError('Network request failed'));
                 };
                 xhr.responseType = 'blob';
                 xhr.open('GET', image.uri, true);
                 xhr.send(null);
-              });
+            });
             let data = {}
-                const uploadTask = storageRef.child('book/' + bookName).put(blob);
-                uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-                    (snapshot) =>{
-                        // console.log(snapshot.bytesTransferred);
-                        // const uploadProgress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes)) * 80;
-                        // setProgress(10 + uploadProgress)
-                    },(error) =>{
-                        alert(error)
-                        setLoading(false)
-                        throw error
-                    },() =>{
-                        uploadTask.snapshot.ref.getDownloadURL().then((url) =>{
-                            const ebookData = {
-                                name: bookName,
-                                image: url,
-                                description: bookDetails
-                            }
-                            data[newCategory] = firebase.firestore.FieldValue.arrayUnion(ebookData)
-                            ebookRef
-                                .update(data)
-                                .then(() => {
-                                    setLoading(false)
-                                    props.navigation.navigate('EBooks')
-                                })
-                                .catch((error) => {
-                                    alert(error)
-                                    setLoading(false)
-                                }); 
-                            }); 
+            const uploadTask = storageRef.child('book/' + bookName).put(blob);
+            uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+                (snapshot) => {
+                    // console.log(snapshot.bytesTransferred);
+                    // const uploadProgress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes)) * 80;
+                    // setProgress(10 + uploadProgress)
+                }, (error) => {
+                    alert(error)
+                    setLoading(false)
+                    throw error
+                }, () => {
+                    uploadTask.snapshot.ref.getDownloadURL().then((url) => {
+                        const ebookData = {
+                            name: bookName,
+                            image: url,
+                            description: bookDetails
                         }
-                )
-    
-    
+                        data[newCategory] = firebase.firestore.FieldValue.arrayUnion(ebookData)
+                        ebookRef
+                            .update(data)
+                            .then(() => {
+                                setLoading(false)
+                                sendSms()
+                                props.navigation.navigate('EBooks')
+                            })
+                            .catch((error) => {
+                                alert(error)
+                                setLoading(false)
+                            });
+                    });
+                }
+            )
+
+
         }
     }
 
@@ -163,11 +179,11 @@ const AddEbookScreen = (props) => {
                     name='angle-left'
                     color='black'
                     size={36}
-                    style={{ paddingRight: 20}}
+                    style={{paddingRight: 20}}
                 />
             </TouchableOpacity>
             <View style={Styles.container}>
-            <Text style={{flex: 1}}/>{/*Just for vertical align center*/}
+                <Text style={{flex: 1}}/>{/*Just for vertical align center*/}
                 {/* <Text style={{marginLeft: '12%', color: 'gray'}}>Select Course</Text> */}
                 <View style={sharedStyles.selectInput}>
                     <Picker
@@ -203,30 +219,36 @@ const AddEbookScreen = (props) => {
                     returnKeyType='next'
 
                 />
-                <View style={{width: '80%', flexDirection: 'row', marginVertical: 30, alignItems: 'center', justifyContent: 'center'}}>
+                <View style={{
+                    width: '80%',
+                    flexDirection: 'row',
+                    marginVertical: 30,
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                }}>
                     <TextInput style={[Styles.input, {width: '70%'}]} placeholder='Add Image'
                                placeholderTextColor='#bebebe' editable={false} value={image ? image.uri : ''}/>
                     <FAB style={Styles.fab} medium icon="image-plus" onPress={PickImage} color='#FCB97D'/>
                 </View>
                 <TextInput
-     multiline={true}
-     numberOfLines={10}
-     placeholder='Book Description'
-     placeholderTextColor='#BEBEBE'
-     style={[Styles.input,{ height:200, textAlignVertical: 'top',paddingTop:8}]}
-     onChangeText={(text) => setBookDetails(text)}
-                        value={bookDetails}
- />
+                    multiline={true}
+                    numberOfLines={10}
+                    placeholder='Book Description'
+                    placeholderTextColor='#BEBEBE'
+                    style={[Styles.input, {height: 200, textAlignVertical: 'top', paddingTop: 8}]}
+                    onChangeText={(text) => setBookDetails(text)}
+                    value={bookDetails}
+                />
                 <Text style={{flex: 1}}/>{/*Just for vertical align center*/}
                 <TouchableOpacity
                     style={loading ? [Styles.button, sharedStyles.disabledButton] : Styles.button}
                     disabled={loading}
                     onPress={() => onSubmitPressed()}>
-                                   {loading ? 
-                            <ActivityIndicator size={'large'} color={'#FCB97D'} style={{paddingRight: 16}}/>
-                        :   <Text/>
-                        }
-                    <Text style={{color: '#fff',fontSize: 16,fontWeight: 'bold'}}>Submit</Text>
+                    {loading ?
+                        <ActivityIndicator size={'large'} color={'#FCB97D'} style={{paddingRight: 16}}/>
+                        : <Text/>
+                    }
+                    <Text style={{color: '#fff', fontSize: 16, fontWeight: 'bold'}}>Submit</Text>
                 </TouchableOpacity>
                 <Text style={{flex: 1}}/>{/*Just for vertical align center*/}
             </View>

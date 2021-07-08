@@ -5,6 +5,7 @@ import sharedStyles from "../sharedStyles"
 import styles from "./styles"
 import {firebase} from '../../firebase/config'
 import Icon from "react-native-vector-icons/FontAwesome";
+import axios from 'axios';
 
 export default function AddCourseScreen(props) {
     const [selectedCourse, setSelectedCourse] = useState("");
@@ -12,11 +13,15 @@ export default function AddCourseScreen(props) {
     const [courses, setCourses] = useState([]);
     const [level, setLevel] = useState("");
     const [link, setLink] = useState("");
+    const [userPhone, setUserPhone] = useState({})
+    const uid = props.extraData.id
+    let userPhoneNumber = []
 
     useEffect(() => {
         const courseRef = firebase.firestore().collection('courses')
+
         courseRef
-        .doc(props.route.params.level)
+            .doc(props.route.params.level)
             // .orderBy('createdAt', 'desc')
             .onSnapshot(
                 querySnapshot => {
@@ -28,7 +33,20 @@ export default function AddCourseScreen(props) {
             )
     }, [])
 
+    const sendSms = () => {
+        axios
+            .post('https://tanzaniatx.herokuapp.com/sms/', {
+                "phonenumber": "0686206206",
+                "message": "Hello Nielimishe have added a new course, please open our app to check!"
+            }).then(r => {
+            console.log('response is: ', r);
+        }).catch(reason => {
+            console.log('error occured: ', reason)
+        })
+    }
+
     const onSubmitPressed = () => {
+
         let newCourse = ''
         if (selectedCourse.trim().length > 0) {
             if (selectedCourse === 'new') {
@@ -51,16 +69,17 @@ export default function AddCourseScreen(props) {
             console.log(newCourse)
             let data = {}
             data[newCourse] = firebase.firestore.FieldValue.arrayUnion(link)
-                    const courseRef = firebase.firestore().collection('courses')
-                    courseRef
-                        .doc(props.route.params.level)
-                        .update(data)
-                        .then(() => {
-                            props.navigation.navigate('Courses')
-                        })
-                        .catch((error) => {
-                            alert(error)
-                        });
+            const courseRef = firebase.firestore().collection('courses')
+            courseRef
+                .doc(props.route.params.level)
+                .update(data)
+                .then(() => {
+                    sendSms();
+                    props.navigation.navigate('Courses')
+                })
+                .catch((error) => {
+                    alert(error)
+                });
         }
     }
 
