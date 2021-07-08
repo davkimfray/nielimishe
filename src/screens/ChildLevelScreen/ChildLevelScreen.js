@@ -27,8 +27,8 @@ export default function ChildLevelScreen(props) {
                 <Icon
                     name='angle-left'
                     color='black'
-                    size={36}
-                    style={{paddingLeft: 30, paddingRight: 20}}
+                    size={36} 
+                    style={{ paddingRight: 20}}
                 />
             </TouchableOpacity>
                 <View style={styles.buttonsWrapper}>

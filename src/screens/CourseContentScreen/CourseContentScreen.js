@@ -40,7 +40,7 @@ export default function CourseContentScreen(props) {
   const closeModal = useCallback(() => showModal(false), []);
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#EDD892' }}>
+    <SafeAreaView style={[sharedStyles.container,{ flex: 1, backgroundColor: '#EDD892' }]}>
 
 <View style={sharedStyles.screenTitleWrapper}>
                     <TouchableOpacity 
@@ -115,7 +115,7 @@ const VideoItem = ({ videoId, onPress }) => {
     return (
       <TouchableOpacity
         onPress={() => onPress(videoId)}
-        style={{ flexDirection: "row", margin: 16, marginVertical: 8, elevation: 3, backgroundColor: '#fff', padding: 8, borderRadius:12 }}
+        style={{ flexDirection: "row", marginVertical: 12, elevation: 3, backgroundColor: '#fff', padding: 8, borderRadius:12 }}
       >
         <Image
           source={{ uri: videoMeta.thumbnail_url }}
@@ -171,17 +171,17 @@ const VideoModal = ({ videoId, onClose }) => {
     <View
       style={{
         flex: 1,
-        backgroundColor: "#ffffffdd",
+        backgroundColor: "#EDD892cc",
         justifyContent: "center",
       }}
     >
-      <View style={{ backgroundColor: "#fff", padding: 16 }}>
+      <View style={{ backgroundColor: "#EDD892cc", padding:16, elevation:0 }}>
         <Text onPress={onClose} style={{ textAlign: "right" }}>
           Close
         </Text>
         {loading ? 
            <View style={{marginTop: '30%', marginLeft: '35%', position: 'absolute'}}>
-           <ActivityIndicator size={60} color={'#8962F8'}/>
+           <ActivityIndicator size={60} color={'#FCB97D'}/>
        </View>
         : <Text/> }
         <YoutubeIframe
@@ -190,6 +190,9 @@ const VideoModal = ({ videoId, onClose }) => {
           videoId={videoId}
           height={250}
           onReady={onPlayerReady}
+          style={{
+            backgroundColor: "#EDD892cc",
+          }}
           onChangeState={(state) => {
             if (state === "ended") {
               setCompleted(true);

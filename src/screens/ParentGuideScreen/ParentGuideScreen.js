@@ -66,7 +66,8 @@ export default function ParentGuideScreen(props) {
         renderItem={({ item, index }) => (
             <TouchableOpacity
                     style={styles.button}
-                    onPress={() => onGuidePress(item)}>
+                    onPress={() => onGuidePress(item)}
+                    >
                                <Icon
                     name={item.icon} 
                     color='#FCB97D'

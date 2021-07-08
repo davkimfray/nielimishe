@@ -44,5 +44,36 @@ export default StyleSheet.create({
         margin: 16,
         right: 0,
         bottom: 0
+    },
+    bookContainer: {
+        padding: 30,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    bookImg: {
+        height: 300,
+        width: 200
+    },
+    authorContainer: {
+        // backgroundColor: '#fff',
+        width: '100%',
+        // height: '10%',
+        justifyContent: 'space-evenly',
+        paddingLeft: 10
+    },
+    author: {
+        fontStyle: 'italic',
+        fontSize: 27,
+    },
+    bookName: {
+        fontWeight: '400',
+        fontSize: 32
+    },
+    textAreaContainer: {
+        borderColor: 'grey',
+        borderWidth: 1,
+    },
+    textArea: {
+        height: 80,
     }
 })

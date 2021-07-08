@@ -5,7 +5,10 @@ export default StyleSheet.create({
         flex: 1,
         alignItems: "center",
         width: '100%',
-        backgroundColor: '#EDD892'
+        backgroundColor: '#EDD892',
+        paddingLeft: 24,
+        paddingRight: 24,
+
     },
     title: {
 

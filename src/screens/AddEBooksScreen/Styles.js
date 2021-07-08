@@ -20,7 +20,7 @@ export default StyleSheet.create({
          flex: 1,
         width: '100%',
         alignItems: 'center',
-        backgroundColor: 'white'
+        // backgroundColor: 'white'
     },
     input: {
         borderColor: '#BEBEBE',
@@ -30,11 +30,11 @@ export default StyleSheet.create({
         width: '80%',
         alignItems: 'center',
         paddingLeft: 10,
-        marginTop: 16,
+        // marginTop: 16,
         backgroundColor: 'white'
     },
     fab: {
-        marginTop: 25,
+        // marginTop: 25,
         marginLeft: 23,
         right: 0,
         bottom: 0,

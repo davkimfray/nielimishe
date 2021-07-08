@@ -12,6 +12,7 @@ import * as FileSystem from 'expo-file-system';
 
 const AddEbookScreen = (props) => {
     const [bookName, setBookName] = useState('');
+    const [bookDetails, setBookDetails] = useState('');
     const [image, setImage] = useState(null);
     const [category, setCategory] = useState('');
     const [categories, setCategories] = useState([]);
@@ -131,7 +132,7 @@ const AddEbookScreen = (props) => {
                             const ebookData = {
                                 name: bookName,
                                 image: url,
-                                description
+                                description: bookDetails
                             }
                             data[newCategory] = firebase.firestore.FieldValue.arrayUnion(ebookData)
                             ebookRef
@@ -154,7 +155,7 @@ const AddEbookScreen = (props) => {
 
 
     return (
-        <View style={[sharedStyles.container, {backgroundColor: 'white'}]}>
+        <View style={[sharedStyles.container, {}]}>
             <TouchableOpacity
                 style={{marginLeft: 0, marginRight: 'auto', marginTop: 50}}
                 onPress={() => props.navigation.goBack()}>
@@ -162,7 +163,7 @@ const AddEbookScreen = (props) => {
                     name='angle-left'
                     color='black'
                     size={36}
-                    style={{paddingLeft: 30, paddingRight: 20}}
+                    style={{ paddingRight: 20}}
                 />
             </TouchableOpacity>
             <View style={Styles.container}>
@@ -202,11 +203,20 @@ const AddEbookScreen = (props) => {
                     returnKeyType='next'
 
                 />
-                <View style={{width: '80%', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-                    <TextInput style={[Styles.input, {width: '70%', marginTop: 30}]} placeholder='Add Image'
+                <View style={{width: '80%', flexDirection: 'row', marginVertical: 30, alignItems: 'center', justifyContent: 'center'}}>
+                    <TextInput style={[Styles.input, {width: '70%'}]} placeholder='Add Image'
                                placeholderTextColor='#bebebe' editable={false} value={image ? image.uri : ''}/>
                     <FAB style={Styles.fab} medium icon="image-plus" onPress={PickImage} color='#FCB97D'/>
                 </View>
+                <TextInput
+     multiline={true}
+     numberOfLines={10}
+     placeholder='Book Description'
+     placeholderTextColor='#BEBEBE'
+     style={[Styles.input,{ height:200, textAlignVertical: 'top',paddingTop:8}]}
+     onChangeText={(text) => setBookDetails(text)}
+                        value={bookDetails}
+ />
                 <Text style={{flex: 1}}/>{/*Just for vertical align center*/}
                 <TouchableOpacity
                     style={loading ? [Styles.button, sharedStyles.disabledButton] : Styles.button}
